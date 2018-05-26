@@ -1,9 +1,24 @@
 ## minimax_examples.py
+'''
+Various 2D examples surfaces for testing minimax algorithms.
+
+Examples of saddle points = f1, f2, f8
+Examples of no saddle points = f32, f12, f9
+'''
 
 import os
 import numpy as np
 
-result_dir = '/home/hammj/Dropbox/Research/AdversarialLearning/codes/results/icml18'
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib.patches import FancyArrowPatch
+from mpl_toolkits.mplot3d import proj3d
+
+import matplotlib.pyplot as plt
+import matplotlib.backends.backend_pdf
+from matplotlib import colors as mcolors
+from matplotlib import cm
+from matplotlib.ticker import LinearLocator, FormatStrFormatter
+
 
 ######################################################################################################
 
@@ -294,16 +309,6 @@ def f13(u,v,args):
 
 #################################################################################################
 
-from mpl_toolkits.mplot3d import Axes3D
-from matplotlib.patches import FancyArrowPatch
-from mpl_toolkits.mplot3d import proj3d
-
-import matplotlib.pyplot as plt
-import matplotlib.backends.backend_pdf
-from matplotlib import colors as mcolors
-from matplotlib import cm
-from matplotlib.ticker import LinearLocator, FormatStrFormatter
-
 class Arrow3D(FancyArrowPatch):
     def __init__(self, xs, ys, zs, *args, **kwargs):
         FancyArrowPatch.__init__(self, (0,0), (0,0), *args, **kwargs)
@@ -318,16 +323,6 @@ class Arrow3D(FancyArrowPatch):
 
 
 if __name__ == "__main__":
-    #def showSurface(fn,args):
-    # f1: Saddle (quadratic, separable)
-    # f2: Rotated saddle (quadratic)
-    # f3: Monkey saddle (3rd order) -> Minimaxq \ne saddle point
-    # f4: Another (non-polynomial) saddle, constrained on u'u <1 and v'v < 1
-    # f5: sin-cos
-    # f6: simple
-    # f7: simple
-    # f8/f9: simple
-    
     # Examples of saddle points = f1, f2, f8
     # Examples of no saddle points = f32, f12, f9
 
@@ -335,8 +330,6 @@ if __name__ == "__main__":
     args = np.zeros(0)
     
     ## Make surfce
-    #u = np.linspace(-np.sqrt(0.5),np.sqrt(0.5),100)
-    #v = np.linspace(-np.sqrt(0.5),np.sqrt(0.5),100)    
     u = np.linspace(-0.5,0.5,100)
     v = np.linspace(-0.5,0.5,100)    
     
@@ -406,13 +399,13 @@ if __name__ == "__main__":
         ax.set_xlabel('U',fontsize=18)
         ax.set_ylabel('V',fontsize=18)
         #plt.legend(fontsize=18, loc='upper right')
-        plt.show(block=True)
+        plt.show(block=False)
         ## Change file name
         #with matplotlib.backends.backend_pdf.PdfPages(os.path.join(result_dir,'demo_surfaces9_points.pdf')) as pdf:
         #    pdf.savefig(bbox_inches='tight')
 
 
-    if False:
+    if True:
         ## Show max functions
         fig = plt.figure(2)
         phi = Z.max(0)
@@ -422,7 +415,7 @@ if __name__ == "__main__":
         #with matplotlib.backends.backend_pdf.PdfPages(os.path.join(result_dir,'results/maxfunc12.pdf')) as pdf:
         #    pdf.savefig(bbox_inches='tight')
 
-    if False:
+    if True:
         ## Show min functions
         fig = plt.figure(3)
         phi_ = Z.min(1)
@@ -432,7 +425,7 @@ if __name__ == "__main__":
         #with matplotlib.backends.backend_pdf.PdfPages(os.path.join(result_dir,'maxfunc12.pdf')) as pdf:
         #    pdf.savefig(bbox_inches='tight')
 
-    if False: ## Show global saddle points, if any
+    if True: ## Show global saddle points, if any
         fig = plt.figure(4)
         #plt.close()
         #fig = plt.figure()
@@ -459,7 +452,7 @@ if __name__ == "__main__":
         plt.legend(fontsize=18, loc='upper right')
         plt.show(block=False)
 
-    if False: ## Show cricial points, if any
+    if True: ## Show cricial points, if any
         fig = plt.figure(5)
         #plt.close()
         #fig = plt.figure()
@@ -484,5 +477,5 @@ if __name__ == "__main__":
         plt.legend(fontsize=18, loc='upper right')
         plt.show(block=False)
     
-    #raw_input('Press any key to continue')
+    raw_input('Press any key to continue')
 
