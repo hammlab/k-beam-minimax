@@ -7,66 +7,16 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 import matplotlib.backends.backend_pdf
 from mpl_toolkits.axes_grid1 import ImageGrid
-
 #from __future__ import print_function
 import keras
 #from keras.datasets import cifar10, cifar100
 from keras.datasets import mnist
-
+from utils import *
 import sys
-
 
 sys.path.append('/home/hammj/Dropbox/Research/AdversarialNetwork/codes/scripts')
 
-#dir_model = '/home/hammj/Dropbox/Research/AdversarialNetwork/codes/results'
-#dir_result = '/home/hammj/Dropbox/Research/AdversarialNetwork/codes/results/nips17'
-
-
-def shuffle_aligned_list(data):
-    """Shuffle arrays in a list by shuffling each array identically."""
-    num = data[0].shape[0]
-    p = np.random.permutation(num)
-    return [d[p] for d in data]
-
-
-def batch_generator(data, batch_size, shuffle=True):
-    """Generate batches of data.
-    
-    Given a list of array-like objects, generate batches of a given
-    size by yielding a list of array-like objects corresponding to the
-    same slice of each input.
-    """
-    if shuffle:
-        data = shuffle_aligned_list(data)
-
-    batch_count = 0
-    while True:
-        if batch_count * batch_size + batch_size >= len(data[0]):
-            batch_count = 0
-
-            if shuffle:
-                data = shuffle_aligned_list(data)
-
-        start = batch_count * batch_size
-        end = start + batch_size
-        batch_count += 1
-        yield [d[start:end] for d in data]
-
-
-def imshow_grid(images, shape=[2, 8], fig=None):
-    """Plot images in a grid of a given shape."""
-    if fig==None:
-        fig = plt.figure()
-    grid = ImageGrid(fig, 111, nrows_ncols=shape, axes_pad=0.05)
-    
-    size = shape[0] * shape[1]
-    for i in range(size):
-        grid[i].axis('off')
-        grid[i].imshow(images[i], cmap='gray')  # The AxesGrid object work as a list of axes.
-    
-    plt.show(block=False)
-    return fig
-
+##########################################################################################################################
 
 def decoder(ins,scope,reuse=False,d=10): # z -> x
     batch_size = tf.shape(ins)[0]
@@ -119,6 +69,8 @@ def minimax_kbeam(sess, feed_dict):
 
 
 ###########################################################################################################################################
+#dir_model = '/home/hammj/Dropbox/Research/AdversarialNetwork/codes/results'
+#dir_result = '/home/hammj/Dropbox/Research/AdversarialNetwork/codes/results/nips17'
 
 D = 28*28*1
 d = 10
