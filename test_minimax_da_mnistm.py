@@ -92,9 +92,6 @@ def evaluate(X1test,X2test,y1test,y2test):
 
 #########################################################################################################################
 
-result_dir = '/home/hammj/Dropbox/Research/AdversarialLearning/codes/results/icml18'
-
-
 K = 2
 max_step = 1
 min_step = 1
