@@ -1,4 +1,4 @@
-# Generative model of mnist digits.
+## Generative model of mnist digits.
 
 import time
 import numpy as np
@@ -6,38 +6,67 @@ import scipy.io
 import tensorflow as tf
 import matplotlib.pyplot as plt
 import matplotlib.backends.backend_pdf
+from mpl_toolkits.axes_grid1 import ImageGrid
+
+#from __future__ import print_function
+import keras
+#from keras.datasets import cifar10, cifar100
+from keras.datasets import mnist
 
 import sys
+
+
 sys.path.append('/home/hammj/Dropbox/Research/AdversarialNetwork/codes/scripts')
-from utils import *
-import model_mnist
 
-dir_model = '/home/hammj/Dropbox/Research/AdversarialNetwork/codes/results'
-dir_result = '/home/hammj/Dropbox/Research/AdversarialNetwork/codes/results/nips17'
+#dir_model = '/home/hammj/Dropbox/Research/AdversarialNetwork/codes/results'
+#dir_result = '/home/hammj/Dropbox/Research/AdversarialNetwork/codes/results/nips17'
 
 
-## Load data
-X1train, y1train, X1test, y1test = model_mnist.readData()
+def shuffle_aligned_list(data):
+    """Shuffle arrays in a list by shuffling each array identically."""
+    num = data[0].shape[0]
+    p = np.random.permutation(num)
+    return [d[p] for d in data]
 
-## Build network
-D = 28*28*1
-#lamb = 1E-6
-d = 10
-K = 2
-max_step = 5
-min_step = 1
 
-## Create the model
-x1 = tf.placeholder(tf.float32, [None, 28,28,1])
-x2 = tf.placeholder(tf.float32, [None, d])
-#y1 = tf.placeholder(tf.float32, [None, 10],name='y1')
-#y2 = tf.placeholder(tf.float32, [None, 10],name='y2')
-gen_lrate = tf.placeholder(tf.float32, [])
-disc_lrate = tf.placeholder(tf.float32, [])
-batch_size = tf.shape(x1)[0]
+def batch_generator(data, batch_size, shuffle=True):
+    """Generate batches of data.
+    
+    Given a list of array-like objects, generate batches of a given
+    size by yielding a list of array-like objects corresponding to the
+    same slice of each input.
+    """
+    if shuffle:
+        data = shuffle_aligned_list(data)
 
-#def lrelu(x,al=0.01):
-#    return tf.maximum(al*x,x)
+    batch_count = 0
+    while True:
+        if batch_count * batch_size + batch_size >= len(data[0]):
+            batch_count = 0
+
+            if shuffle:
+                data = shuffle_aligned_list(data)
+
+        start = batch_count * batch_size
+        end = start + batch_size
+        batch_count += 1
+        yield [d[start:end] for d in data]
+
+
+def imshow_grid(images, shape=[2, 8], fig=None):
+    """Plot images in a grid of a given shape."""
+    if fig==None:
+        fig = plt.figure()
+    grid = ImageGrid(fig, 111, nrows_ncols=shape, axes_pad=0.05)
+    
+    size = shape[0] * shape[1]
+    for i in range(size):
+        grid[i].axis('off')
+        grid[i].imshow(images[i], cmap='gray')  # The AxesGrid object work as a list of axes.
+    
+    plt.show(block=False)
+    return fig
+
 
 def decoder(ins,scope,reuse=False,d=10): # z -> x
     batch_size = tf.shape(ins)[0]
@@ -73,8 +102,50 @@ def discriminator(ins,scope,reuse=False,nh=50):
     return [out,reg]
 
 
+def minimax_kbeam(sess, feed_dict):
+    # min-step
+    for it_min in range(min_step):
+        fs = sess.run(loss,feed_dict)
+        id_max = np.argmax(fs) 
+        sess.run(optim_min[id_max],feed_dict)
+    
+    # max-step
+    for it_max in range(max_step):
+        #fs = sess.run(loss,feed_dict)
+        #id_max = np.argmax(fs) 
+        #sess.run(optim_max[id_max],feed_dict)
+        sess.run(optim_max,feed_dict)
+
+
+
+###########################################################################################################################################
+
+D = 28*28*1
+d = 10
+K = 1
+max_step = 1
+min_step = 1
+batchsize = 128
+lr_gen = 1E-3
+lr_disc = 1E-3
+niter = 10001
+
+
+## Load data
+(X1train, y1train), (X1test, y1test) = mnist.load_data()
+X1train = X1train.reshape((-1,28,28,1)).astype('float32')/255.
+X1test = X1test.reshape((-1,28,28,1)).astype('float32')/255.
+y1train = keras.utils.to_categorical(y1train,10)
+y1test = keras.utils.to_categorical(y1test,10)
+print X1train.shape
+
+## Create the model
+x1 = tf.placeholder(tf.float32, [None, 28,28,1])
+x2 = tf.placeholder(tf.float32, [None, d])
+#lr_gen = tf.placeholder(tf.float32, [])
+#lr_disc = tf.placeholder(tf.float32, [])
+
 ## Generator
-#dec,reg_dec = model_mnist.decoder(x2,'mnist_decoder')
 dec,reg_dec = decoder(x2,'mnist_decoder',d=d)
 vars_dec = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES,scope='mnist_decoder')
 
@@ -96,65 +167,43 @@ for i in range(K):
     -tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=disc_fake[i], labels=tf.zeros_like(disc_fake[i])))
     '''    
     eps = 1E-12
-    # original loss - doesn't work
+    ## original loss - doesn't work
     loss[i] = tf.reduce_mean(tf.log(tf.maximum(eps,tf.minimum(tf.nn.sigmoid(disc_real[i]),1.-eps)))) \
         +tf.reduce_mean(tf.log(tf.subtract(1.,tf.maximum(eps,tf.minimum(tf.nn.sigmoid(disc_fake[i]),1-eps)))))
     '''
     vars_disc[i] = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, 'disc'+str(i))
-    optim_min[i] = tf.train.AdamOptimizer(gen_lrate).minimize(loss[i],var_list=vars_dec)
-    optim_max[i] = tf.train.AdamOptimizer(disc_lrate).minimize(-loss[i],var_list=vars_disc[i])
-
-
-## Simplest version
-def minimax(sess, feed_dict):#, min_step=1, max_step=1):
-    # min-step
-    for it_min in range(min_step):
-        fs = sess.run(loss,feed_dict)
-        id_max = np.argmax(fs) 
-        sess.run(optim_min[id_max],feed_dict)
-    
-    # max-step
-    for it_max in range(max_step):
-        #fs = sess.run(loss,feed_dict)
-        #id_max = np.argmax(fs) 
-        #sess.run(optim_max[id_max],feed_dict)
-        sess.run(optim_max,feed_dict)
-
-## \epsilon-steepest descent
+    optim_min[i] = tf.train.AdamOptimizer(lr_gen).minimize(loss[i],var_list=vars_dec)
+    optim_max[i] = tf.train.AdamOptimizer(lr_disc).minimize(-loss[i],var_list=vars_disc[i])
 
 
 ## Misc
 #saver = tf.train.Saver()
-saver_dec = tf.train.Saver(vars_dec)
-#saver_util = tf.train.Saver(vars_util)
 
 #########################################################################################################
 
 ## Init
-#sess = tf.InteractiveSession()
 sess = tf.Session()
-#sess.run(tf.global_variables_initializer())
-sess.run(tf.initialize_all_variables())
+sess.run(tf.global_variables_initializer())
+#sess.run(tf.initialize_all_variables())
 
 ## Load pre-trained autoencoders
 #saver_dec.restore(sess, dir_model+'/mnist_decoder.ckpt')
 
-if False:
+if True:
     X2test = np.random.uniform(-1.,1.,size=((64,d)))
-    np.save(dir_result+'/X2test.npy',X2test)
+    #np.save(dir_result+'/X2test.npy',X2test)
 else:
-    X2test = np.load(dir_result+'/X2test.npy')
+    pass
+    #X2test = np.load(dir_result+'/X2test.npy')
 
-
-batchsize = 128
 gen_batch = batch_generator([X1train, y1train], batchsize)
-lr = 1E-3
+
 
 ## Burn-in period for v, when using u from autoencoder
 for it in range(0):
     X1, Y1 = gen_batch.next()
     X2 = np.random.uniform(-1.,1.,size=(batchsize,d))    
-    feed_dict = {x1:X1, x2:X2, gen_lrate:lr,disc_lrate:lr}
+    feed_dict = {x1:X1, x2:X2}
     sess.run(optim_max,feed_dict)
     if it%100 == 0:
         fs = sess.run(loss,feed_dict)
@@ -162,15 +211,13 @@ for it in range(0):
         f = np.max(fs)
         print 'step %d: f=%g, id_max=%d'%(it,f,id_max)
 
+
 ## Minimax 
-for it in range(10001):
+for it in range(niter):
     X1, Y1 = gen_batch.next()
     X2 = np.random.uniform(-1.,1.,size=(batchsize,d))    
-    #X2 = np.random.uniform(size=(batchsize,d))    
-    #X2 = X2test    
-    feed_dict = {x1:X1, x2:X2, gen_lrate:lr,disc_lrate:lr}
-    minimax(sess, feed_dict)
-    # loss_max should be large, and loss_min should be small
+    feed_dict = {x1:X1, x2:X2}
+    minimax_kbeam(sess, feed_dict)
     if it%100 == 0:
         fs = sess.run(loss,feed_dict)
         id_max = np.argmax(fs) 
@@ -183,8 +230,9 @@ for it in range(10001):
         #plt.show(block=False)    
         plt.pause(3.)
         
-        with matplotlib.backends.backend_pdf.PdfPages(dir_result+'/gan_mnist_K%d_max%d_%d.pdf'%(K,max_step,it)) as pdf:
-            pdf.savefig(bbox_inches='tight')
+        #with matplotlib.backends.backend_pdf.PdfPages(dir_result+'/gan_mnist_K%d_max%d_%d.pdf'%(K,max_step,it)) as pdf:
+        #    pdf.savefig(bbox_inches='tight')
 
 
+raw_input('Press any key to continue')
 
