@@ -89,13 +89,10 @@ X1train = X1train.reshape((-1,28,28,1)).astype('float32')/255.
 X1test = X1test.reshape((-1,28,28,1)).astype('float32')/255.
 y1train = keras.utils.to_categorical(y1train,10)
 y1test = keras.utils.to_categorical(y1test,10)
-print X1train.shape
 
 ## Create the model
 x1 = tf.placeholder(tf.float32, [None, 28,28,1])
 x2 = tf.placeholder(tf.float32, [None, d])
-#lr_gen = tf.placeholder(tf.float32, [])
-#lr_disc = tf.placeholder(tf.float32, [])
 
 ## Generator
 dec,reg_dec = decoder(x2,'mnist_decoder',d=d)
