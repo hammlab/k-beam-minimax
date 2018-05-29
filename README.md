@@ -1,8 +1,8 @@
-### k-Beam Minimax Optimization
+## K-Beam Minimax Optimization
 #### For faster and more stable training of GANs and other adversarial optimization problems such domain adaptation, privacy preservation, and robust learning. 
 ---
 
-![concept figure](minimaxfilter2.jpg "Example minimax filter")
+![GAN - Mixture of Gaussians](jsd.jpg "mixture of gaussian)
 
 #### Abstract
 
