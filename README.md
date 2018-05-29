@@ -2,7 +2,7 @@
 #### For faster and more stable training of GANs and other adversarial optimization problems such domain adaptation, privacy preservation, and robust learning. 
 ---
 
-![GAN - Mixture of Gaussians](jsd.jpg "mixture of gaussian)
+![GAN - Mixture of Gaussians](jsd.jpg "mixture of gaussians")
 
 #### Abstract
 
