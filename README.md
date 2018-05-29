@@ -18,6 +18,9 @@ A significant improvement in stability and convergence speed of the algorithm is
 Python 2, Scipy, Tensorflow, Keras,
 Download from ...
 
+The MNIST-M dataset was created using the scripts from 
+https://github.com/tensorflow/models/tree/master/research/domain_adaptation. 
+
 ### Examples
 ---
 #### 1. Run [test_minimax_simple.py](test_minimax_simple.py)
