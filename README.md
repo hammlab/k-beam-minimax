@@ -1,40 +1,33 @@
-# kbeam
-### Minimax Filter
-#### can preserve privacy of images, audios, or biometric data by making it difficult for an adversary to infer sensitive or identifying information from those data after filtering.
+### k-Beam Minimax Optimization
+#### For faster and more stable training of GANs and other adversarial optimization problems such domain adaptation, privacy preservation, and robust learning. 
 ---
 
 ![concept figure](minimaxfilter2.jpg "Example minimax filter")
 
 #### Abstract
 
-Preserving privacy of continuous and/or high-dimensional data such as images, videos
-and audios, can be challenging with syntactic anonymization methods such as k-anonymity
-which are designed for discrete attributes. Differential privacy, which provides a different
-and more formal type of privacy, has shown more success in sanitizing continuous data.
-However, both syntactic and differential privacy are susceptible to inference attacks, i.e., an
-adversary can accurately guess sensitive attributes from insensitive attributes. This paper
-proposes a learning approach to finding a minimax filter of raw features which retains infor-
-mation for target tasks but removes information from which an adversary can infer sensitive
-attributes. Privacy and utility of filtered data are measured by expected risks, and an opti-
-mal tradeoff of the two goals is found by a variant of minimax optimization. Generalization
-performance of the empirical solution is analyzed and and a new and simple optimization
-algorithm is presented. In addition to introducing minimax filter, the paper proposes noisy
-minimax filter that combines minimax filter and differentially private noisy mechanism,
-and compare resilience to inference attack and differentially privacy both quantitatively
-and qualitatively. Experiments with several real-world tasks including facial expression
-recognition, speech emotion recognition, and activity recognition from motion, show that
-the minimax filter can simultaneously achieve similar or better target task accuracy and
-lower inference accuracy, often significantly lower, than previous methods.
+Minimax optimization plays a key role in adversarial training of machine learning algorithms, such as learning generative models, domain adaptation, privacy preservation, and robust learning. 
+In this paper, we demonstrate the failure of alternating gradient descent in minimax optimization problems due to the discontinuity of solutions of the inner maximization. 
+To address this, we propose a new epsilon-subgradient descent algorithm that addresses this problem by simultaneously tracking K candidate solutions. 
+Practically, the algorithm can find solutions that previous saddle-point algorithms cannot find, with only a sublinear increase of complexity in K.
+We analyze the conditions under which the algorithm converges to the true solution in detail. 
+A significant improvement in stability and convergence speed of the algorithm is observed in simple representative problems, GAN training, and domain-adaptation problems.
 
-
-### Getting Started
+### Requirements
 ---
-#### 1. Download all files in [src/](src) and [test/](test)
-Make sure you can access scripts in /src, for example by downloading files from both /src and /test into the same folder.
-Description of the scripts are in [src/readme.md](src/readme.md).
-The Genki dataset [test/genki.mat](test/genki.mat) is originally downloaded from http://mplab.ucsd.edu. 
+Python 2, Scipy, Tensorflow, Keras,
+Download from ...
 
-#### 2. Run [test/test_NN_genki.py](test/test_NN_genki.py) 
+### Examples
+---
+#### 1. Run [test_minimax_simple.py](test_minimax_simple.py)
+This script demonstrates the use of the k-beam minimax (and a few other optimization algorithms) in pure python.
+The simple 2D surfaces are defined in the minimax_examples.py file.
+If you run this script, you will get ....
+
+
+#### 2. Run [test_minimax_mog_long.py](test_minimax_mog_long.py) 
+
 The task is to learn a filter of face image from the Genki dataset which allows accurate classification of 'smile' vs 'non-smile' but prevents accurate classification of 'male' vs 'female'. 
 
 The script finds a minimax filter by alternating optimization. The filer is a two-layer sigmoid neural net and the classifiers are softmax classifiers. 
@@ -67,14 +60,10 @@ Here 'alt' is the linear minimax filter, 'rate1' is the accuracy of expression c
 
 ### Reference
 ---
-* [J. Hamm, "Preserving privacy of continuous high-dimensional data with minimax filters," 
- AISTATS, 2015](http://web.cse.ohio-state.edu/~hammj/papers/aistats15_2_jh_final.pdf)
+* [J. Hamm and Yung-Kyun Noh, "K-Beam Subgradient Descent for Minimax Optimization," 
+ ICML, 2018]()
 * [J. Hamm, "Mimimax Filter: Learning to Preserve Privacy from Inference Attacks," arXiv:1610.03577, 2016](http://arxiv.org/abs/1610.03577)
 
-
-### License
----
-Released under the Apache License 2.0.  See the [LICENSE.txt](LICENSE.txt) file for further details.
 
 
 
