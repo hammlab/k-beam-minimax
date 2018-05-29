@@ -32,6 +32,24 @@ This script demonstrates the use of the k-beam minimax (and a few other optimiza
 The simple 2D surfaces are defined in the minimax_examples.py file.
 If you run this script, you will get ....
 
+```
+Example 0/6
+Trial 0/100
+Error: 0.000 (GD), 0.000 (Alt-GD), 0.000 (minimax K=1), 0.000 (minimax K=2), 0.000 (minimax K=5), 0.000 (minimax K=10)
+Trial 1/100
+Error: 0.000 (GD), 0.000 (Alt-GD), 0.000 (minimax K=1), 0.000 (minimax K=2), 0.000 (minimax K=5), 0.000 (minimax K=10)
+Trial 2/100
+Error: 0.000 (GD), 0.000 (Alt-GD), 0.000 (minimax K=1), 0.000 (minimax K=2), 0.000 (minimax K=5), 0.000 (minimax K=10)
+Trial 3/100
+Error: 0.000 (GD), 0.000 (Alt-GD), 0.000 (minimax K=1), 0.000 (minimax K=2), 0.000 (minimax K=5), 0.000 (minimax K=10)
+Trial 4/100
+Error: 0.000 (GD), 0.000 (Alt-GD), 0.000 (minimax K=1), 0.000 (minimax K=2), 0.000 (minimax K=5), 0.000 (minimax K=10)
+Trial 5/100
+Error: 0.000 (GD), 0.000 (Alt-GD), 0.000 (minimax K=1), 0.000 (minimax K=2), 0.000 (minimax K=5), 0.000 (minimax K=10)
+......
+
+```
+
 
 #### 2. Run [test_minimax_mog_long.py](test_minimax_mog_long.py) 
 
