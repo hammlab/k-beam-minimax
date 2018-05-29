@@ -16,10 +16,14 @@ A significant improvement in stability and convergence speed of the algorithm is
 ### Requirements
 ---
 Python 2, Scipy, Tensorflow, Keras,
-Download from ...
 
 The MNIST-M dataset was created using the scripts from 
-https://github.com/tensorflow/models/tree/master/research/domain_adaptation. 
+https://github.com/pumpikano/tf-dann
+.
+
+
+https://github.com/pumpikano/tf-dann/blob/master/utils.py
+
 
 ### Examples
 ---
