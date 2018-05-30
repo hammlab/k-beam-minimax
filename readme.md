@@ -1,13 +1,13 @@
 ## K-Beam Minimax Optimization
 #### For faster and more stable training of GANs and other adversarial optimization problems such as domain adaptation, privacy preservation, and robust learning. 
----
+
 
 ![GAN - Mixture of Gaussians](/misc/jsd.jpg "mixture of gaussians")
 *Simultaneously tracking K local maxima of the minimax problem improves convergence and stability significantly as K increases.*
 
 This page is the repository for the codes used in ["K-Beam Subgradient Descent for Minimax Optimization," ICML, 2018](http://arxiv.org/abs/1610.03577).
  
-
+---
 ### Abstract
 
 Minimax optimization plays a key role in adversarial training of machine learning algorithms, such as learning generative models, domain adaptation, privacy preservation, and robust learning. 
@@ -17,14 +17,14 @@ Practically, the algorithm can find solutions that previous saddle-point algorit
 We analyze the conditions under which the algorithm converges to the true solution in detail. 
 A significant improvement in stability and convergence speed of the algorithm is observed in simple representative problems, GAN training, and domain-adaptation problems.
 
-### Requirements
 ---
+### Requirements
   * Python 2, NumPy, SciPy, Tensorflow, Keras
   * The MNIST-M dataset was created using the scripts from https://github.com/pumpikano/tf-dann. You can download it from the /mnist-m folder and uncompress it using `rar`. 
 
-
-### Examples
 ---
+### Examples
+
 #### 1. [test_minimax_simple.py](test_minimax_simple.py)
 This script demonstrates the use of the k-beam minimax (and a few other optimization algorithms) in pure python.
 The simple 2D surfaces are defined in the minimax_examples.py file.
@@ -50,7 +50,6 @@ trial 5/100, test error: 0.000 (GD), 0.000 (Alt-GD), 0.000 (minimax K=1), 0.000 
 
 ```
 
-
 #### 2. [test_minimax_mog_long.py](test_minimax_mog_long.py) 
 
 The task is to learn a filter of face image from the Genki dataset which allows accurate classification of 'smile' vs 'non-smile' but prevents accurate classification of 'male' vs 'female'. 
@@ -70,7 +69,6 @@ trial 0/10, step 5000: jsd=0.497433, f=-1.38747, id_max=0
 ![mog](/misc/mog.jpg "mog")
 
 Results will be save to a file named 'test_NN_genki.npz'
-
 
 #### 3. [test_minimax_da_mnistm.py](test_minimax_da_mnistm.py) 
 
