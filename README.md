@@ -4,7 +4,7 @@
 
 ![GAN - Mixture of Gaussians](jsd.jpg "mixture of gaussians")
 
-#### Abstract
+### Abstract
 
 Minimax optimization plays a key role in adversarial training of machine learning algorithms, such as learning generative models, domain adaptation, privacy preservation, and robust learning. 
 In this paper, we demonstrate the failure of alternating gradient descent in minimax optimization problems due to the discontinuity of solutions of the inner maximization. 
