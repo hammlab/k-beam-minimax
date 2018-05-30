@@ -74,7 +74,7 @@ def minimax_kbeam(sess, feed_dict):
 
 D = 28*28*1
 d = 10
-K = 1
+K = 5
 max_step = 1
 min_step = 1
 batchsize = 128
@@ -176,6 +176,7 @@ for it in range(niter):
     if it%5000 == 0:
         X2test_ = sess.run(dec,feed_dict={x2:X2test})
         imshow_grid(X2test_[:64,:].reshape((64,28,28)),[8,8])
+        plt.suptitle('t=%d'%(it),size=12)
         #plt.show(block=False)    
         plt.pause(3.)
         
@@ -184,4 +185,5 @@ for it in range(niter):
 
 
 raw_input('Press any key to continue')
+
 
