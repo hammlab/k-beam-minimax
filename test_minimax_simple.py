@@ -382,8 +382,6 @@ def fixedstepsize_proj(fn,u0,v0,delu,delv,eta,args,proj,t=1.):
 # Examples of no saddle points = f32, f12, f9
 
 
-#result_dir = '/home/hammj/Dropbox/Research/AdversarialLearning/codes/results/icml18'
-
 eta = 1E-1
 ntrial = 100
 maxiter = 1000
