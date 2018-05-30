@@ -69,7 +69,7 @@ trial 0/10, step 4000: jsd=0.519081, f=-1.38356, id_max=0
 trial 0/10, step 5000: jsd=0.497433, f=-1.38747, id_max=0
 ......
 ```
-![mog](mog.jpg "mog)
+![mog](mog.jpg "mog")
 
 Results will be save to a file named 'test_NN_genki.npz'
 
