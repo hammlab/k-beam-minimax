@@ -19,8 +19,8 @@ A significant improvement in stability and convergence speed of the algorithm is
 
 ### Requirements
 ---
-..* Python 2, NumPy, SciPy, Tensorflow, Keras
-..* The MNIST-M dataset was created using the scripts from https://github.com/pumpikano/tf-dann. For your convenience, it is compressed and stored in [/mnist-m].
+  * Python 2, NumPy, SciPy, Tensorflow, Keras
+  * The MNIST-M dataset was created using the scripts from https://github.com/pumpikano/tf-dann. For your convenience, it is compressed and stored in [/mnist-m].
 
 
 ### Examples
