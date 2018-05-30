@@ -69,7 +69,7 @@ trial 0/10, step 4000: jsd=0.519081, f=-1.38356, id_max=0
 trial 0/10, step 5000: jsd=0.497433, f=-1.38747, id_max=0
 ......
 ```
-![t=0](0.jpg "t=0") ![t=5000](5.jpg "t=5000") ![t=10000](10.jpg "t=10000")
+![mog](mog.jpg "mog)
 
 Results will be save to a file named 'test_NN_genki.npz'
 
@@ -93,6 +93,8 @@ trial 0/10, step 1000: test err src=0.029, tar=0.4204
 ```
 
 #### 4. Run [test_minimax_mnist.py](test_minimax_mnist.py) 
+
+![t=0](0.jpg "t=0") ![t=5000](5.jpg "t=5000") ![t=10000](10.jpg "t=10000")
 
 
 ### Reference
