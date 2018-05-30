@@ -67,8 +67,6 @@ def minimax_kbeam(sess, feed_dict):
 
 
 ###########################################################################################################################################
-#dir_model = '/home/hammj/Dropbox/Research/AdversarialNetwork/codes/results'
-#dir_result = '/home/hammj/Dropbox/Research/AdversarialNetwork/codes/results/nips17'
 
 D = 28*28*1
 d = 10
