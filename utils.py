@@ -1,3 +1,4 @@
+## Originally from https://github.com/pumpikano/tf-dann/blob/master/utils.py
 import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
