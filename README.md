@@ -78,23 +78,11 @@ trial 0, step 5000: jsd=0.497433, f=-1.38747, id_max=0
 
 Results will be save to a file named 'test_NN_genki.npz'
 
-#### 3. Run [test/test_all_genki.py](test/test_all_genki.py)
-The task is the same as before (accurate facial expression and inaccurate gender classification.)
 
-The script trains and compares several private and non-private algorithms for the same task, including a linear minimax filter.
+#### 3. Run [test_minimax_da_mnistm.py](test_minimax_da_mnistm.py) 
 
-The script will also run for a few minutes on a desktop. 
-You will see similar results as follows.
-```
-rand: d=10, trial=0, rate1=0.705000, rate2=0.705000
 
-pca: d=10, trial=0, rate1=0.840000, rate2=0.665000
-
-pls: d=10, trial=0, rate1=0.850000, rate2=0.685000
-
-alt: rho=10.000000, d=10, trial=0, rate1=0.825000, rate2=0.520000
-```
-Here 'alt' is the linear minimax filter, 'rate1' is the accuracy of expression classification and 'rate 2' is the accuracy of gender classification.
+#### 4. Run [test_minimax_mnist.py](test_minimax_mnist.py) 
 
 
 ### Reference
