@@ -2,7 +2,7 @@
 #### For faster and more stable training of GANs and other adversarial optimization problems such domain adaptation, privacy preservation, and robust learning. 
 ---
 
-![GAN - Mixture of Gaussians](./misc/jsd.jpg "mixture of gaussians")
+![GAN - Mixture of Gaussians](/misc/jsd.jpg "mixture of gaussians")
 *image_caption*
 
 ### Abstract
@@ -70,7 +70,7 @@ trial 0/10, step 4000: jsd=0.519081, f=-1.38356, id_max=0
 trial 0/10, step 5000: jsd=0.497433, f=-1.38747, id_max=0
 ......
 ```
-![mog](misc/mog.jpg "mog")
+![mog](/misc/mog.jpg "mog")
 
 Results will be save to a file named 'test_NN_genki.npz'
 
@@ -109,7 +109,7 @@ step 1000: f=-0.702013, id_max=1
 ......
 ```
 
-![t=0](misc/0.jpg "t=0") ![t=5000](misc/5.jpg "t=5000") ![t=10000](misc/10.jpg "t=10000")
+![t=0](/misc/0.jpg "t=0") ![t=5000](/misc/5.jpg "t=5000") ![t=10000](/misc/10.jpg "t=10000")
 
 
 ### Reference
