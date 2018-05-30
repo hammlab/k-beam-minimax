@@ -264,7 +264,7 @@ for trial in range(ntrial):
             jsd_test[cnt1,trial] = jsd
             #jsd_test.append(jsd)
             cnt1 += 1
-            print 'trial %d, step %d: jsd=%f, f=%g, id_max=%d'%(trial,i,jsd,f,id_max)
+            print 'trial %d/%d, step %d: jsd=%f, f=%g, id_max=%d'%(trial,ntrial,i,jsd,f,id_max)
             #ids_eps = np.where(fs>=f-eps)[0]
             #print 'step %d: f=%g, id_max=%d, n-eps=%d'%(i,f,id_max,ids_eps.size)
         if i%viz_every == 0:
