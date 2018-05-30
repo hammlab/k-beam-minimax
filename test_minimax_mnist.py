@@ -14,8 +14,6 @@ from keras.datasets import mnist
 from utils import *
 import sys
 
-sys.path.append('/home/hammj/Dropbox/Research/AdversarialNetwork/codes/scripts')
-
 ##########################################################################################################################
 
 def decoder(ins,scope,reuse=False,d=10): # z -> x
