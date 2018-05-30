@@ -13,9 +13,6 @@ import matplotlib.pyplot as plt
 import time
 from scipy.stats import entropy
 import sys
-#sys.path.append('/home/hammj/Dropbox/Research/AdversarialNetwork/codes/scripts')
-#dir_model = '/home/hammj/Dropbox/Research/AdversarialNetwork/codes/results'
-#result_dir = '/home/hammj/Dropbox/Research/AdversarialLearning/codes/results/icml18'
 
 ds = tf.contrib.distributions
 slim = tf.contrib.slim
@@ -288,13 +285,6 @@ for trial in range(ntrial):
 
     time_total[trial] = time.time()-time0
     plt.pause(10.)  
-#print 'time elapsed=%f for ntrial=%d,max_iter=%d,K=%d,J=%d,ga=%8.8f'%(time_total,ntrial,max_iter,params['K'],params['max_step'],params['gamma'])
-#print 'time per 1000 iter=%f'%(1000.*time_total/np.float(ntrial*max_iter))
-
-#np.save(result_dir+'/points_mog_K%d_J%d_ga%8.8f_al%6.6f.npy'%(params['K'],params['max_step'],params['gamma'],params['gen_learning_rate']),points)
-#np.save(result_dir+'/jsd_test_mog_K%d_J%d_ga%8.8f_al%6.6f.npy'%(params['K'],params['max_step'],params['gamma'],params['gen_learning_rate']),jsd_test)
-#np.save(result_dir+'/time_total_mog_K%d_J%d_ga%8.8f_al%6.6f.npy'%(params['K'],params['max_step'],params['gamma'],params['gen_learning_rate']),time_total)
-#print jsd_test
 
 
 raw_input('Press enter to end')
