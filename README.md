@@ -68,11 +68,11 @@ The script finds a minimax filter by alternating optimization. The filer is a tw
 The script will run for a few minutes on a desktop. 
 After 50 iterations, the filter will achieve ~88% accuracy in facial expression classification and ~66% accuracy in gender classification.
 ```
-trial 0, step 1000: jsd=0.575550, f=-1.38655, id_max=0
-trial 0, step 2000: jsd=0.602133, f=-1.37656, id_max=0
-trial 0, step 3000: jsd=0.493302, f=-1.38702, id_max=1
-trial 0, step 4000: jsd=0.519081, f=-1.38356, id_max=0
-trial 0, step 5000: jsd=0.497433, f=-1.38747, id_max=0
+trial 0/10, step 1000: jsd=0.575550, f=-1.38655, id_max=0
+trial 0/10, step 2000: jsd=0.602133, f=-1.37656, id_max=0
+trial 0/10, step 3000: jsd=0.493302, f=-1.38702, id_max=1
+trial 0/10, step 4000: jsd=0.519081, f=-1.38356, id_max=0
+trial 0/10, step 5000: jsd=0.497433, f=-1.38747, id_max=0
 ......
 ```
 ![GAN - Mixture of Gaussians](mog.jpg "mixture of gaussians")
