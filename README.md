@@ -94,6 +94,20 @@ trial 0/10, step 1000: test err src=0.029, tar=0.4204
 
 #### 4. Run [test_minimax_mnist.py](test_minimax_mnist.py) 
 
+```
+step 100: f=-0.0431621, id_max=0
+step 200: f=-0.0840572, id_max=3
+step 300: f=-0.249747, id_max=1
+step 400: f=-0.31125, id_max=2
+step 500: f=-0.181053, id_max=4
+step 600: f=-0.26613, id_max=2
+step 700: f=-0.312954, id_max=4
+step 800: f=-0.348138, id_max=4
+step 900: f=-0.352485, id_max=2
+step 1000: f=-0.702013, id_max=1
+......
+```
+
 ![t=0](0.jpg "t=0") ![t=5000](5.jpg "t=5000") ![t=10000](10.jpg "t=10000")
 
 
