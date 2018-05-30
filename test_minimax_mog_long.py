@@ -238,7 +238,6 @@ max_iter = params['max_iter']
 viz_every = params['viz_every']
 nskip = params['nskip']
 nsnap = int(np.ceil(max_iter/np.float(viz_every)))
-print nsnap
 
 points = np.nan*np.ones((nsnap,2,batch_size,2,ntrial))
 jsd_test = np.nan*np.ones((int(np.ceil(max_iter/np.float(nskip))),ntrial))
@@ -246,7 +245,7 @@ time_total = np.nan*np.ones(ntrial)
 p_orig = compute_p_orig()
 
 for trial in range(ntrial):
-    print '%d/%d'%(trial,ntrial)
+    #print '%d/%d'%(trial,ntrial)
     cnt1 = 0
     cnt2 = 0
     sess.run(tf.global_variables_initializer())
@@ -278,7 +277,9 @@ for trial in range(ntrial):
             txx = points[cnt2-1,0,:,:,:(trial+1)].transpose((1,0,2)).reshape((2,batch_size*(trial+1)))
             tyy = points[cnt2-1,1,:,:,:(trial+1)].transpose((1,0,2)).reshape((2,batch_size*(trial+1)))    
             plt.scatter(txx[0,:], txx[1,:], c='b', edgecolor='none', s=10, alpha=0.1)
-            plt.axis([-1.5,1.5,-1.5,1.5])
+            #plt.axis([-1.5,1.5,-1.5,1.5])
+            plt.xlim(-1.5,1.5)
+            plt.ylim(-1.5,1.5)
             plt.xticks([])
             plt.yticks([])        
             plt.axis('equal')
@@ -286,6 +287,7 @@ for trial in range(ntrial):
             plt.pause(3.)  
 
     time_total[trial] = time.time()-time0
+    plt.pause(10.)  
 #print 'time elapsed=%f for ntrial=%d,max_iter=%d,K=%d,J=%d,ga=%8.8f'%(time_total,ntrial,max_iter,params['K'],params['max_step'],params['gamma'])
 #print 'time per 1000 iter=%f'%(1000.*time_total/np.float(ntrial*max_iter))
 

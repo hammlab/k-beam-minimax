@@ -92,6 +92,7 @@ def evaluate(X1test,X2test,y1test,y2test):
 
 #########################################################################################################################
 
+
 K = 2
 max_step = 1
 min_step = 1
@@ -191,7 +192,7 @@ print '\nK=%d, J=%d'%(K,max_step)
 
 ## Train
 for trial in range(ntrial):
-    print '%d/%d'%(trial,ntrial)
+    #print '%d/%d'%(trial,ntrial)
     cnt = 0
     sess.run(tf.global_variables_initializer())
     for it in range(max_iter):
@@ -205,6 +206,6 @@ for trial in range(ntrial):
             errs_src[cnt,trial] = terr_src
             errs_tar[cnt,trial] = terr_tar
             cnt += 1
-            print 'step %d: test err src=%g, tar=%g'%(it,terr_src,terr_tar)
+            print 'trial %d/%d, step %d: test err src=%g, tar=%g'%(trial,ntrial,it,terr_src,terr_tar)
 
 

@@ -393,7 +393,7 @@ nmethods = len(labels)
 errs_norm = np.nan*np.ones((6,ntrial,maxiter,nmethods))
 
 for i,fn in enumerate([f1,f2,f8,f32,f12,f9]):
-    print '%d/%d'%(i,6)
+    print '\n\nExample %d/%d'%(i,6)
     args = np.zeros(0)
     proj = proj_linf
     if i==3:
@@ -402,6 +402,7 @@ for i,fn in enumerate([f1,f2,f8,f32,f12,f9]):
         uast = np.array([0.])
 
     for trial in range(ntrial):
+        #print 'Trial %d/%d'%(trial,ntrial)
         u0 = 0.45*(2.*np.random.rand(1)-1.)
         V = 0.45*(2*np.random.rand(10)-1.)
         v0 = V[0]
@@ -433,6 +434,9 @@ for i,fn in enumerate([f1,f2,f8,f32,f12,f9]):
             errs_norm[i,trial,:,3] = np.abs(us4-uast[0]).squeeze()
             errs_norm[i,trial,:,4] = np.abs(us5-uast[0]).squeeze()
             errs_norm[i,trial,:,5] = np.abs(us6-uast[0]).squeeze()
+            
+        tmean = errs_norm[i,:(trial+1),-1,:].mean(0).squeeze()
+        print 'trial %d/%d, test error: %4.3f (%s), %4.3f (%s), %4.3f (%s), %4.3f (%s), %4.3f (%s), %4.3f (%s)'%(trial,ntrial,tmean[0],labels[0],tmean[1],labels[1],tmean[2],labels[2],tmean[3],labels[3],tmean[4],labels[4],tmean[5],labels[5]) 
 
                     
 
