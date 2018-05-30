@@ -76,6 +76,21 @@ Results will be save to a file named 'test_NN_genki.npz'
 
 #### 3. Run [test_minimax_da_mnistm.py](test_minimax_da_mnistm.py) 
 
+```
+K=2, J=1
+trial 0/10, step 0: test err src=0.8905, tar=0.9093
+trial 0/10, step 100: test err src=0.0805, tar=0.5922
+trial 0/10, step 200: test err src=0.0491, tar=0.6436
+trial 0/10, step 300: test err src=0.0471, tar=0.5577
+trial 0/10, step 400: test err src=0.0334, tar=0.4933
+trial 0/10, step 500: test err src=0.0365, tar=0.5121
+trial 0/10, step 600: test err src=0.0327, tar=0.4681
+trial 0/10, step 700: test err src=0.0846, tar=0.5191
+trial 0/10, step 800: test err src=0.1043, tar=0.6619
+trial 0/10, step 900: test err src=0.0404, tar=0.4417
+trial 0/10, step 1000: test err src=0.029, tar=0.4204
+......
+```
 
 #### 4. Run [test_minimax_mnist.py](test_minimax_mnist.py) 
 
