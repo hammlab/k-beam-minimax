@@ -69,7 +69,7 @@ trial 0/10, step 4000: jsd=0.519081, f=-1.38356, id_max=0
 trial 0/10, step 5000: jsd=0.497433, f=-1.38747, id_max=0
 ......
 ```
-![GAN - Mixture of Gaussians](mog.jpg "mixture of gaussians")
+![t=0](0.jpg "t=0") ![t=5000](5.jpg "t=5000") ![t=10000](10.jpg "t=10000")
 
 Results will be save to a file named 'test_NN_genki.npz'
 
