@@ -1,9 +1,12 @@
 ## K-Beam Minimax Optimization
-#### For faster and more stable training of GANs and other adversarial optimization problems such domain adaptation, privacy preservation, and robust learning. 
+#### For faster and more stable training of GANs and other adversarial optimization problems such as domain adaptation, privacy preservation, and robust learning. 
 ---
 
 ![GAN - Mixture of Gaussians](/misc/jsd.jpg "mixture of gaussians")
-*image_caption*
+*Simultaneously tracking K local maxima of the minimax problem improves convergence and stability significantly as K increases.*
+
+This page is the repository for the codes used in ["K-Beam Subgradient Descent for Minimax Optimization," ICML, 2018](http://arxiv.org/abs/1610.03577).
+ 
 
 ### Abstract
 
@@ -16,19 +19,13 @@ A significant improvement in stability and convergence speed of the algorithm is
 
 ### Requirements
 ---
-Python 2, Scipy, Tensorflow, Keras,
-
-The MNIST-M dataset was created using the scripts from 
-https://github.com/pumpikano/tf-dann
-.
-
-
-https://github.com/pumpikano/tf-dann/blob/master/utils.py
+..* Python 2, NumPy, SciPy, Tensorflow, Keras
+..* The MNIST-M dataset was created using the scripts from https://github.com/pumpikano/tf-dann. For your convenience, it is compressed and stored in [/mnist-m].
 
 
 ### Examples
 ---
-#### 1. Run [test_minimax_simple.py](test_minimax_simple.py)
+#### 1. [test_minimax_simple.py](test_minimax_simple.py)
 This script demonstrates the use of the k-beam minimax (and a few other optimization algorithms) in pure python.
 The simple 2D surfaces are defined in the minimax_examples.py file.
 If you run this script, you will get ....
@@ -54,7 +51,7 @@ trial 5/100, test error: 0.000 (GD), 0.000 (Alt-GD), 0.000 (minimax K=1), 0.000 
 ```
 
 
-#### 2. Run [test_minimax_mog_long.py](test_minimax_mog_long.py) 
+#### 2. [test_minimax_mog_long.py](test_minimax_mog_long.py) 
 
 The task is to learn a filter of face image from the Genki dataset which allows accurate classification of 'smile' vs 'non-smile' but prevents accurate classification of 'male' vs 'female'. 
 
@@ -75,7 +72,7 @@ trial 0/10, step 5000: jsd=0.497433, f=-1.38747, id_max=0
 Results will be save to a file named 'test_NN_genki.npz'
 
 
-#### 3. Run [test_minimax_da_mnistm.py](test_minimax_da_mnistm.py) 
+#### 3. [test_minimax_da_mnistm.py](test_minimax_da_mnistm.py) 
 
 ```
 K=2, J=1
@@ -93,7 +90,7 @@ trial 0/10, step 1000: test err src=0.029, tar=0.4204
 ......
 ```
 
-#### 4. Run [test_minimax_mnist.py](test_minimax_mnist.py) 
+#### 4. [test_minimax_mnist.py](test_minimax_mnist.py) 
 
 ```
 step 100: f=-0.0431621, id_max=0
