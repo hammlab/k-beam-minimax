@@ -3,6 +3,7 @@
 ---
 
 ![GAN - Mixture of Gaussians](jsd.jpg "mixture of gaussians")
+*image_caption*
 
 ### Abstract
 
