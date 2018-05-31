@@ -5,7 +5,7 @@
 ![GAN - Mixture of Gaussians](/misc/jsd.jpg "mixture of gaussians")
 <!--*Caption: Simultaneously tracking K local maxima of the minimax problem improves convergence and stability significantly as K increases.*-->
 
-This page is the repository for the codes used in ["K-Beam Subgradient Descent for Minimax Optimization," ICML 2018](http://arxiv.org/abs/1805.11640).
+This is a repository for the codes used in ["K-Beam Subgradient Descent for Minimax Optimization," ICML 2018](http://arxiv.org/abs/1805.11640).
  
 ---
 ### Abstract
@@ -20,14 +20,14 @@ A significant improvement in stability and convergence speed of the algorithm is
 ---
 ### Requirements
   * Python 2, NumPy, SciPy, Tensorflow, Keras
-  * The MNIST-M dataset was created using the scripts from https://github.com/pumpikano/tf-dann. You can download it from the /mnist-m folder and uncompress it using `rar`. 
+  * The MNIST-M dataset was created using the scripts from https://github.com/pumpikano/tf-dann. You can download the compressed files from the `/mnist-m` folder and uncompress them using `rar`. 
   * (Optional) [CVXOPTS](https://github.com/cvxopt/cvxopt) if you want to test the approximate subgradient descent.
   
 ---
 ### Examples
   * This repository demonstrates the K-beam minimax algorithm applied to different machine learning problems, some implemented in pure python and some with Tensorflow. 
-  * The core of the algorithm is to simply make K copies of the neural network and find the (local) maximum for each network, starting from random initialization.
-  * Running the scripts below will take time, because the experiments are repeated for 10-100 trials. You can change it by `ntrial=1` inside the scripts for a quick test. 
+  * The core of the k-beam algorithm is to simply make K copies of the neural network and find the local maximum for each network simultaneously starting from random initialization.
+  * Running the scripts below will take time, because the experiments are repeated for 10-100 trials. For quick tests, you can change it by setting  `ntrial=1` inside the scripts. 
 
 #### 1. [test_minimax_simple.py](test_minimax_simple.py)
 This script shows the use of the k-beam minimax (and a few other optimization algorithms) in pure python.
@@ -56,7 +56,7 @@ trial 5/100, test error: 0.000 (GD), 0.000 (Alt-GD), 0.000 (minimax K=1), 0.000 
 #### 2. [test_minimax_mog_long.py](test_minimax_mog_long.py) 
 
 This script shows the use of the k-beam minimax on the GAN problem with a synthetic mixture of Gaussian distribution using Tensorflow. 
-By running the script, you will see the Jensen-Shannon Divergence of GAN-generated samples during the training period.
+By running the script, you will see the Jensen-Shannon Divergence of the GAN-generated samples during the training period.
 
 ```
 trial 0/10, step 1000: jsd=0.575550, f=-1.38655, id_max=0
@@ -73,7 +73,7 @@ You will also see figures like below:
 #### 3. [test_minimax_da_mnistm.py](test_minimax_da_mnistm.py) 
 
 This script shows the use of the k-beam minimax on the unsupervised domain adaption problem with MNIST-M data using Tensorflow.
-By running the script, you will see the in-domain and cross-domain test error during the training period.
+By running the script, you will see the in-domain and cross-domain test errors during the training period.
 
 ```
 K=2, J=1
