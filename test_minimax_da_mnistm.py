@@ -1,6 +1,7 @@
 ## Minimax version of domain-adpative NN
 # Common filter for both mnist and mnistm
-# 
+## Jihun Hamm, 2017
+
 # Some parts of the codes are from https://github.com/pumpikano/tf-dann.
 
 import tensorflow as tf
