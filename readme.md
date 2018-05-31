@@ -5,7 +5,7 @@
 ![GAN - Mixture of Gaussians](/misc/jsd.jpg "mixture of gaussians")
 <!--*Caption: Simultaneously tracking K local maxima of the minimax problem improves convergence and stability significantly as K increases.*-->
 
-This page is the repository for the codes used in ["K-Beam Subgradient Descent for Minimax Optimization," ICML, 2018](http://arxiv.org/abs/1805.11640).
+This page is the repository for the codes used in ["K-Beam Subgradient Descent for Minimax Optimization," ICML 2018](http://arxiv.org/abs/1805.11640).
  
 ---
 ### Abstract
@@ -115,7 +115,7 @@ step 1000: f=-0.702013, id_max=1
 
 ---
 ### Reference
-* [J. Hamm and Yung-Kyun Noh, "K-Beam Subgradient Descent for Minimax Optimization," ICML, 2018](http://arxiv.org/abs/1805.11640).
+* [J. Hamm and Yung-Kyun Noh, "K-Beam Subgradient Descent for Minimax Optimization," ICML 2018](http://arxiv.org/abs/1805.11640).
 
 
 
