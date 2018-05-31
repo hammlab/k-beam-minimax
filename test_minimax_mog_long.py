@@ -1,5 +1,3 @@
-## Same as test_minimax_mog. Just run for K=1 and max_iter=500000
-
 ## Parts of codes are from https://github.com/poolio/unrolled_gan
 
 import os
