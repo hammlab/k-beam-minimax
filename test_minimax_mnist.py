@@ -1,4 +1,5 @@
 ## Generative model of mnist digits.
+## Jihun Hamm, 2017
 
 import time
 import numpy as np
