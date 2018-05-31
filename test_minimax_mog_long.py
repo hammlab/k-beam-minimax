@@ -1,3 +1,6 @@
+## test_minimax_mog_long.py
+## Jihun Hamm, 2017
+
 ## Parts of codes are from https://github.com/poolio/unrolled_gan
 
 import os
