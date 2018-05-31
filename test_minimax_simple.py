@@ -1,4 +1,6 @@
-## Compare different minimax optimization methods for representative 2D surfaces.
+## test_minimax_simple.py
+## Compares different minimax optimization methods for representative 2D surfaces.
+## Jihun Hamm, 2017
 
 import os
 import numpy as np
