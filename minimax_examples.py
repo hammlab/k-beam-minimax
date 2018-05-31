@@ -1,4 +1,5 @@
 ## minimax_examples.py
+## Jihun Hamm, 2017
 '''
 Various 2D examples surfaces for testing minimax algorithms.
 
