@@ -159,6 +159,7 @@ vars_priv = [[] for i in range(K)]
 optim_max = [[] for i in range(K)]
 optim_min = [[] for i in range(K)]
 
+optimizer_min = tf.train.MomentumOptimizer(lr,0.9)
 for i in range(K):
     fprivx[i],_ = NN_priv(filtx,'priv'+str(i),reuse=False)
     fprivz[i],_ = NN_priv(filtz,'priv'+str(i),reuse=True)
@@ -166,7 +167,7 @@ for i in range(K):
     loss_privz[i] = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=fprivz[i],labels=ypos))
     loss[i] = rho*loss_utilx -0.5*loss_privx[i] -0.5*loss_privz[i] + lamb*(reg_filt+reg_util)
     vars_priv[i] = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, 'priv'+str(i))
-    optim_min[i] = tf.train.MomentumOptimizer(lr,0.9).minimize(loss[i],var_list=vars_filt+vars_util)
+    optim_min[i] = optimizer_min.minimize(loss[i],var_list=vars_filt+vars_util)
     optim_max[i] = tf.train.MomentumOptimizer(lr,0.9).minimize(-loss[i],var_list=vars_priv[i])
 
 
