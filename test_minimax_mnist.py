@@ -104,7 +104,7 @@ optim_max=[[] for i in range(K)]
 optim_min=[[] for i in range(K)]
 reg_disc=[[] for i in range(K)]
 
-
+optimizer_min = tf.train.AdamOptimizer(lr_gen)
 for i in range(K):
     disc_real[i], reg_disc[i]= discriminator(x1,'disc'+str(i),False)
     disc_fake[i],_ = discriminator(dec,'disc'+str(i),True)
@@ -118,7 +118,8 @@ for i in range(K):
         +tf.reduce_mean(tf.log(tf.subtract(1.,tf.maximum(eps,tf.minimum(tf.nn.sigmoid(disc_fake[i]),1-eps)))))
     '''
     vars_disc[i] = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, 'disc'+str(i))
-    optim_min[i] = tf.train.AdamOptimizer(lr_gen).minimize(loss[i],var_list=vars_dec)
+    #optim_min[i] = tf.train.AdamOptimizer(lr_gen).minimize(loss[i],var_list=vars_dec)
+    optim_min[i] = optimizer_min.minimize(loss[i],var_list=vars_dec)    
     optim_max[i] = tf.train.AdamOptimizer(lr_disc).minimize(-loss[i],var_list=vars_disc[i])
 
 
