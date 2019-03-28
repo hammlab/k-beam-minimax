@@ -212,7 +212,8 @@ for i in range(params['K']):
     loss[i] = -tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=disc_real[i], labels=tf.ones_like(real_score))) \
         -tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=disc_fake[i], labels=tf.zeros_like(fake_score)))
     vars_disc[i] = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, 'disc'+str(i))
-    optim_min[i] = tf.train.AdamOptimizer(params['gen_learning_rate'], beta1=params['beta1'], epsilon=params['epsilon']).minimize(loss[i],var_list=gen_vars)
+    #optim_min[i] = tf.train.AdamOptimizer(params['gen_learning_rate'], beta1=params['beta1'], epsilon=params['epsilon']).minimize(loss[i],var_list=gen_vars)
+    optim_min[i] = optimizer_min.minimize(loss[i],var_list=gen_vars)
     optim_max[i] = tf.train.AdamOptimizer(params['disc_learning_rate'], beta1=params['beta1'], epsilon=params['epsilon']).minimize(-loss[i],var_list=vars_disc[i])
     grad[i] = tf.gradients(loss[i],gen_vars)
     gradnormsq[i] = tf.add_n([tf.reduce_sum(tf.square(g)) for g in grad[i]])
